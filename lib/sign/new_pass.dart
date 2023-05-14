@@ -15,9 +15,9 @@ class new_passState extends State<new_pass> {
   @override
   Widget build(BuildContext context) {
     void navigatenextpage(BuildContext ctx) {
-      Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-        return changed();
-      }));
+      // Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
+      //   return changed();
+      // }));
     }
 
     return MaterialApp(

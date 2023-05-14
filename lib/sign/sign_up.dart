@@ -4,6 +4,10 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:sign_in/HomePage.dart';
 import 'confirmation.dart';
+
+import 'pass_changed.dart';
+
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class sign_up extends StatefulWidget {
@@ -16,12 +20,7 @@ class sign_up extends StatefulWidget {
 class _sign_upState extends State<sign_up> {
   final formkey = GlobalKey<FormState>();
 
-  void navigatenextpage(BuildContext ctx) {
-    Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      // return confirm();
-      return HomePage();
-    }));
-  }
+ 
 
   TextEditingController _emailControlleur = TextEditingController();
   TextEditingController _nameControlleur = TextEditingController();
@@ -29,7 +28,12 @@ class _sign_upState extends State<sign_up> {
 
   TextEditingController _passwordControlleur = TextEditingController();
   bool isloading = false;
-  Future<void> signupAA() async {
+ 
+  bool b = true;
+
+  @override
+  Widget build(BuildContext context) {
+     Future<void> signupAA() async {
     setState(() {
       isloading = true;
     });
@@ -41,19 +45,22 @@ class _sign_upState extends State<sign_up> {
         password: _passwordControlleur.text,
       )
           .then((value) async {
-        CollectionReference collectionReference =
-            FirebaseFirestore.instance.collection("user");
-        id = value.user!.uid;
-        await collectionReference.doc(value.user!.uid).set({
-          "email": _emailControlleur.text,
-          "name": _nameControlleur.text,
-          "number": _numberControlleur.text,
-        }).then((value) async {
-          // final infos =        await FirebaseFirestore.instance.collection(where).doc(id).get();
-          // userInfo = infos.data()!;    typee = userInfo['user_type'];
-          // userTypee = typee;
-        });
-      });
+  
+User user = value.user! ;
+await user.sendEmailVerification();
+    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+      // return confirm();
+      return changed(user: user,
+      email: _emailControlleur.text,
+         name: _nameControlleur.text,
+         number: _numberControlleur.text,
+         password: _passwordControlleur.text,
+      );
+    }));
+
+
+     
+     }); 
     } on FirebaseAuthException catch (e) {
       print(e.toString());
     }
@@ -62,10 +69,6 @@ class _sign_upState extends State<sign_up> {
     });
   }
 
-  bool b = true;
-
-  @override
-  Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SafeArea(
@@ -304,7 +307,7 @@ class _sign_upState extends State<sign_up> {
                                       if (this.formkey.currentState!.validate()) {
                                         await signupAA();
                     
-                                        navigatenextpage(context);
+
                                       }
                                     },
                                     style: ElevatedButton.styleFrom(

@@ -12,7 +12,7 @@ import 'LocationPage.dart';
 import 'Message.dart';
 import 'SearchPage.dart';
 import 'SettingsPage.dart';
-import 'package:sign_in/home/HomePage.dart';
+import 'package:sign_in/home/HmePge.dart';
 import 'package:sign_in/home/home/views/categorie.dart';
 
 

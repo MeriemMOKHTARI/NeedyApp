@@ -47,6 +47,7 @@ class _sign_inState extends State<sign_in> {
         email: _emailControlleur.text,
         password: _passwordControlleur.text,
       );
+      FirebaseAuth.instance.currentUser! ;
     } on FirebaseAuthException catch (e) {
       print(e.toString());
     }
