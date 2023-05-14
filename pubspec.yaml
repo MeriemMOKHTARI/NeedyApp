@@ -5,24 +5,32 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.0-382.0.dev <3.0.0'
+  sdk: '>=2.18.2 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  firebase_core: ^2.11.0
-  firebase_auth: ^4.5.0
   shared_preferences: ^2.0.6
   image_picker: ^0.8.7
-  firebase_storage: ^11.1.2
-  cloud_firestore: ^4.7.0
+  google_nav_bar: ^5.0.6
+  line_icons: ^2.0.0 
+  change_app_package_name: ^1.1.0
+  smooth_page_indicator: ^1.0.0
+  firebase_core: ^2.11.0
+  cloud_firestore: ^4.6.0
+  flutter_map: ^0.13.1
+  geolocator: ^7.6.2
+  firebase_auth: ^4.6.0
+ 
 
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  path_provider: ^2.0.2
 
+  flutter_lints: ^2.0.0
+  path_provider: ^2.0.2  
 
 
 flutter:
@@ -31,6 +39,8 @@ flutter:
 
   assets:
    - images/
+   - images/categories/
+   - images/categories/Tools.png
 
   fonts:
     - family: Pacifico
