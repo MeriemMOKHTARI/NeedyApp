@@ -5,8 +5,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'enter_pass.dart';
 
 class forget_pass extends StatefulWidget {
-  const forget_pass({super.key});
-
+  forget_pass({super.key, required this.email});
+  String email;
   @override
   State<forget_pass> createState() => _forget_passState();
 }
@@ -18,6 +18,13 @@ class _forget_passState extends State<forget_pass> {
     _emailControlleur.dispose();
     super.dispose();
   }
+  @override
+  void initState(){
+    super.initState();
+    if(widget.email.isNotEmpty){
+      _emailControlleur.text = widget.email;
+    }
+  }
     Future forgetPass() async {
   try {
     await FirebaseAuth.instance.sendPasswordResetEmail(email: _emailControlleur.text.trim());
@@ -25,10 +32,18 @@ class _forget_passState extends State<forget_pass> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            content: Text('Password resent link sent! check your email!'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('Password resent link sent! check your email!'),
+                TextButton(onPressed: (){ Navigator.pop(context);
+      Navigator.pop(context);}, child: Text('OK'))
+              ],
+            ),
           );
         },
       );
+     
   } on FirebaseAuthException catch(e) {
     print(e);
     Future.delayed(Duration.zero, () {

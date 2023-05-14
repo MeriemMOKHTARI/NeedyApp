@@ -21,9 +21,9 @@ class _sign_inState extends State<sign_in> {
     }));
   }
 
-  void navigatenextpage2(BuildContext ctx) {
+  void navigatenextpage2(BuildContext ctx, email) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return forget_pass();
+      return forget_pass(email:email);
     }));
   }
 
@@ -218,7 +218,7 @@ class _sign_inState extends State<sign_in> {
                                 children: [
                                   TextButton(
                                     onPressed: () {
-                                      navigatenextpage2(context);
+                                      navigatenextpage2(context, _emailControlleur.text);
                                     },
                                     child: Text(
                                       "Forget Password?",
