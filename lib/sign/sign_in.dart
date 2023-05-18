@@ -48,6 +48,7 @@ class _sign_inState extends State<sign_in> {
         password: _passwordControlleur.text,
       );
       FirebaseAuth.instance.currentUser! ;
+      navigatenextpage3(context);
     } on FirebaseAuthException catch (e) {
       print(e.toString());
     }
@@ -240,7 +241,7 @@ class _sign_inState extends State<sign_in> {
                                       onPressed: () async {
                                         if (this.formkey.currentState!.validate()) {
                                         await sign();
-                                        navigatenextpage3(context);}
+                                        }
                                       },
                                       style: ElevatedButton.styleFrom(
                                           shape: RoundedRectangleBorder(
